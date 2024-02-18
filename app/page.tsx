@@ -1,9 +1,14 @@
-import Image from "next/image";
+import Header from "./components/main/Header";
+import Images from "./components/main/Images";
+import ClickedImage from "./components/sub/ClickedImage";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      aha
-    </main>
+    <>
+      <main className="min-h-screen bg-background">
+        <Header />
+        <Images />
+      </main>
+    </>
   );
 }
