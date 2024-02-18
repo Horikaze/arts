@@ -6,14 +6,15 @@ html,
 body,
 #root {
   @apply text-text;
-
   scroll-behavior: smooth;
+  background-color: #041421;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
-.modalClassName::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+body:has(dialog[open]) {
+  overflow: hidden;
 }
