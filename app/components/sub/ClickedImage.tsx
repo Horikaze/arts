@@ -3,6 +3,7 @@ import { CgCloseO } from "react-icons/cg";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaClock, FaDownload, FaVideo } from "react-icons/fa6";
+import Link from "next/link";
 type ClickedImageProps = {
   openModal: boolean;
   closeModal: () => void;
@@ -55,14 +56,16 @@ function ClickedImage({ openModal, closeModal, imageUrl }: ClickedImageProps) {
           <FaVideo className="h-6 w-6 group-hover:text-background" />
           <p className="group-hover:text-background">Timelapse</p>
         </div>
-        <div
+        <Link
+          href={imageUrl}
+          download="image.jpg"
           className="flex cursor-pointer transition-all group gap-x-2 items-center justify-center h-full p-2 border rounded-r-full
          hover:bg-text
         "
         >
           <FaDownload className="h-6 w-6 group-hover:text-background" />
           <p className="group-hover:text-background">Download</p>
-        </div>
+        </Link>
       </div>
     </dialog>
   );

@@ -21,7 +21,7 @@ export default function ImageElement({ onClick, imageSrc }: ImageElementProps) {
         alt="image"
       />
 
-      <div className="flex gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
+      <div className="flex bg-secondary/70 p-4 rounded-full gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
         <FaClock className="h-6 w-6" />
         <p>2022-08-08</p>
       </div>
