@@ -1,11 +1,12 @@
 import Header from "./components/main/Header";
 import Images from "./components/main/Images";
-
-export default function Home() {
+import prisma from "@/app/lib/prismadb";
+export default async function Home() {
+  const arts = await prisma.art.findMany();
   return (
     <main className="h-full flex flex-col">
       <Header />
-      <Images />
+      <Images images={arts} />
     </main>
   );
 }

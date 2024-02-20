@@ -1,16 +1,24 @@
 "use client";
-import { CgCloseO } from "react-icons/cg";
-import React, { useEffect, useRef } from "react";
+import { saveAs } from "file-saver";
+
 import Image from "next/image";
-import { FaClock, FaDownload, FaVideo } from "react-icons/fa6";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { CgCloseO } from "react-icons/cg";
+import { FaDownload, FaVideo } from "react-icons/fa6";
 type ClickedImageProps = {
   openModal: boolean;
   closeModal: () => void;
   imageUrl: string;
+  imageName: string;
 };
 
-function ClickedImage({ openModal, closeModal, imageUrl }: ClickedImageProps) {
+function ClickedImage({
+  openModal,
+  closeModal,
+  imageUrl,
+  imageName,
+}: ClickedImageProps) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -56,16 +64,17 @@ function ClickedImage({ openModal, closeModal, imageUrl }: ClickedImageProps) {
           <FaVideo className="h-6 w-6 group-hover:text-background" />
           <p className="group-hover:text-background">Timelapse</p>
         </div>
-        <Link
-          href={imageUrl}
-          download="image.jpg"
+        <div
+          onClick={() => {
+            saveAs(imageUrl, imageName);
+          }}
           className="flex cursor-pointer transition-all group gap-x-2 items-center justify-center h-full p-2 border rounded-r-full
          hover:bg-text
         "
         >
           <FaDownload className="h-6 w-6 group-hover:text-background" />
           <p className="group-hover:text-background">Download</p>
-        </Link>
+        </div>
       </div>
     </dialog>
   );

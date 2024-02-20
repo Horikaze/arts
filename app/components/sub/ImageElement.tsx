@@ -1,21 +1,22 @@
+import { Art } from "@prisma/client";
 import Image from "next/image";
 import { FaClock } from "react-icons/fa6";
 
 type ImageElementProps = {
-  onClick: (imageUrl: string) => void;
-  imageSrc: string;
+  onClick: (art: Art) => void;
+  art: Art;
 };
 
-export default function ImageElement({ onClick, imageSrc }: ImageElementProps) {
+export default function ImageElement({ onClick, art }: ImageElementProps) {
   const handleImageClick = () => {
-    onClick(imageSrc);
+    onClick(art);
   };
 
   return (
     <div className="md:w-96 w-full cursor-pointer font-semibold aspect-square text-sm relative hover:scale-105 transition-all group">
       <Image
         onClick={handleImageClick}
-        src={imageSrc}
+        src={art.fileUrl}
         className="absolute bg-contain rounded-md"
         fill
         alt="image"
