@@ -7,7 +7,7 @@ body,
 #root {
   @apply text-text;
   scroll-behavior: smooth;
-  background-color: #041421;
+  background-color: #f7f9f6;
   height: 100vh;
 }
 

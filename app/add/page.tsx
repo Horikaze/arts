@@ -17,24 +17,64 @@ export default function Add() {
           alert(`${status}`);
         }}
       >
-        <input
-          type="text"
-          placeholder="code"
-          className="rounded-lg p-2 text-background"
-          name="secretKey"
-        />
-        <input type="file" name="file" />
+        <div className="flex gap-x-2">
+          <div className="flex flex-col w-1/2">
+            <p>Date</p>
+            <input
+              type="date"
+              name="date"
+              onChange={(e) => {
+                console.log(e.target.value);
+                console.log(typeof e.target.value);
+              }}
+              className="rounded-lg px-3 py-2 border"
+            />
+          </div>
+          <div className="flex flex-col w-1/2">
+            <p>Code</p>
+            <input
+              type="text"
+              placeholder="code"
+              className="rounded-lg px-3 py-2 border"
+              name="secretKey"
+            />
+          </div>
+        </div>
+        <div className="flex gap-x-2 w-full">
+          <div className="flex flex-col w-1/2">
+            <p>File</p>
+            <label
+              htmlFor="video"
+              className="border h-10 rounded-lg cursor-pointer"
+            ></label>
+            <input
+              type="file"
+              id="video"
+              name="video"
+              hidden
+              className="rounded-lg px-3 py-2"
+            />
+          </div>
+          <div className="flex flex-col w-1/2">
+            <p>Video</p>
+            <label
+              htmlFor="file"
+              className="border h-10 rounded-lg cursor-pointer"
+            ></label>
+            <input
+              type="file"
+              id="file"
+              hidden
+              name="file"
+              className="rounded-lg px-3 py-2"
+            />
+          </div>
+        </div>
         <div className="flex justify-evenly">
-          <button
-            type="reset"
-            className="hover:bg-primary/20 p-3 rounded-lg transition-all"
-          >
+          <button type="reset" className="bg-secondary px-3 py-2 rounded-lg">
             Reset
           </button>
-          <button
-            type="submit"
-            className="hover:bg-primary/20 p-3 rounded-lg transition-all"
-          >
+          <button type="submit" className="bg-primary px-3 py-2 rounded-lg">
             Send
           </button>
         </div>

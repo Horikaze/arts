@@ -17,10 +17,11 @@ datasource db {
 model Art {
   id        String    @id @unique @default(uuid())
   dateAdded DateTime? @default(now())
-  dateFile  DateTime?
+  dateArt   DateTime?
   fileUrl   String
   fileName  String
   fileId    String?
+  video     String?
 }
 
 model AdminKey {

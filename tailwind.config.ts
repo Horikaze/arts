@@ -8,12 +8,12 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      text: "#e1eefb",
-      background: "#041421",
-      primary: "#87c1ef",
-      secondary: "#8d1713",
-      accent: "#e3e32f",
-    },
+      'text': '#0d0f0b',
+      'background': '#f7f9f6',
+      'primary': '#8c9d76',
+      'secondary': '#acbec3',
+      'accent': '#9396b1',
+     }
   },
   plugins: [],
 };
