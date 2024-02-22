@@ -5,7 +5,8 @@ import { addArtAction } from "./serverAction";
 
 export default function Add() {
   const ref = useRef<HTMLFormElement>(null);
-
+  const [file, setFile] = useState<File | null>(null);
+  const [video, setVideo] = useState<File | null>(null);
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <form
@@ -44,13 +45,18 @@ export default function Add() {
           <div className="flex flex-col w-1/2">
             <p>File</p>
             <label
-              htmlFor="video"
-              className="border h-10 rounded-lg cursor-pointer"
-            ></label>
+              htmlFor="file"
+              className="border h-10 rounded-lg cursor-pointer p-2"
+            >
+              {file ? file.name : "Null"}
+            </label>
             <input
               type="file"
-              id="video"
-              name="video"
+              onChange={(e) => {
+                setFile(e.target.files![0]);
+              }}
+              id="file"
+              name="file"
               hidden
               className="rounded-lg px-3 py-2"
             />
@@ -58,14 +64,19 @@ export default function Add() {
           <div className="flex flex-col w-1/2">
             <p>Video</p>
             <label
-              htmlFor="file"
-              className="border h-10 rounded-lg cursor-pointer"
-            ></label>
+              htmlFor="video"
+              className="border h-10 rounded-lg cursor-pointer p-2"
+            >
+              {video ? video.name : "Null"}
+            </label>
             <input
               type="file"
-              id="file"
+              onChange={(e) => {
+                setVideo(e.target.files![0]);
+              }}
+              id="video"
               hidden
-              name="file"
+              name="video"
               className="rounded-lg px-3 py-2"
             />
           </div>

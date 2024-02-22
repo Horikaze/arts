@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <main className="h-full flex flex-col">
       <Header />
-      {arts.length <= 0 ? <Images images={arts} /> : null}
+      {arts.length >= 0 ? <Images images={arts} /> : null}
     </main>
   );
 }

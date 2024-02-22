@@ -1,30 +1,33 @@
 "use server";
+type addArtRes = { status: "OK" | "ERROR" | "NO DATA" | "WRONG KEY" };
 
-type addArtRes = { status: "OK" | "ERROR" };
-
-import { UTApi } from "uploadthing/server";
 import prisma from "@/app/lib/prismadb";
 import { revalidatePath } from "next/cache";
+import { UTApi } from "uploadthing/server";
 export const addArtAction = async (formData: FormData): Promise<addArtRes> => {
   try {
-    console.log("aha");
     const secretKey = formData.get("secretKey") as string;
     const imageFile = formData.get("file") as File;
-    if (secretKey === "" || !imageFile) return { status: "ERROR" };
-    console.log(secretKey);
-    console.log(imageFile);
+    const video = formData.get("video") as File;
+    const date = formData.get("date") as string;
+    if (secretKey === "" || imageFile.name == "undefined" || date.length < 2)
+      return { status: "NO DATA" };
     const admin = await prisma.adminKey.findFirst();
     if (secretKey.toString() !== admin?.key.toString())
-      return { status: "ERROR" };
-    // sending file
+      return { status: "WRONG KEY" };
     const utapi = new UTApi();
-    const res = await utapi.uploadFiles(imageFile);
-    if (res.error) return { status: "ERROR" };
+    const resArt = await utapi.uploadFiles(imageFile);
+    const videoLink =
+      video.name == "undefined"
+        ? null
+        : (await utapi.uploadFiles(video)).data?.url;
+    if (resArt.error) return { status: "ERROR" };
     const newArt = await prisma.art.create({
       data: {
-        fileName: res.data.name,
-        fileUrl: res.data.url,
-        dateFile: new Date(imageFile.lastModified),
+        fileName: resArt.data.name,
+        fileUrl: resArt.data.url,
+        dateArt: new Date(date),
+        video: videoLink,
       },
     });
     console.log(newArt);
