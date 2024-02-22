@@ -26,8 +26,8 @@ export default function ImageElement({ onClick, art }: ImageElementProps) {
         alt="image"
       />
 
-      <div className="flex  p-4 rounded-full gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
-        <FaClock className="h-6 w-6" />
+      <div className="flex p-4 bg-secondary/40 rounded-full gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
+        <FaClock className="size-6" />
         <p>{convertUnixDateHours(art.dateArt as unknown as number)}</p>
       </div>
     </div>

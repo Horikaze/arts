@@ -1,6 +1,6 @@
 import { FaCoffee, FaTwitter } from "react-icons/fa";
 
-const supporters = ["@Rys", "@Æ"];
+const supporters = ["123", "456"];
 export default function Header() {
   return (
     <div className="h-36 border-b border-b-text/10 p-4 flex justify-between font-semibold">
