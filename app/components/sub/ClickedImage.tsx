@@ -35,7 +35,7 @@ function ClickedImage({
     <dialog
       ref={ref}
       onCancel={closeModal}
-      className="w-full h-full bg-secondary/60 backdrop:bg-background/50"
+      className="w-full h-full bg-background/50 backdrop:bg-background/50"
     >
       <div className="flex flex-col w-full h-full absolute">
         <button

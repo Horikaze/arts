@@ -3,7 +3,7 @@ import { FaCoffee, FaTwitter } from "react-icons/fa";
 const supporters = ["123", "456"];
 export default function Header() {
   return (
-    <div className="h-28 border-b border-b-text/10 p-4 flex justify-between font-semibold">
+    <div className="h-24 border-b border-b-text/10 p-4 flex justify-between font-semibold">
       <div className="w-full h-full flex flex-col items-start gap-y-2">
         <div className="flex items-center justify-center gap-x-2">
           <FaTwitter className="size-8" />

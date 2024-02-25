@@ -1,8 +1,6 @@
 import { convertUnixDateHours } from "@/app/lib/forrmaters";
 import { Art } from "@prisma/client";
 import NextImage from "next/image";
-import { useEffect, useState } from "react";
-import { FaClock } from "react-icons/fa6";
 
 type ImageElementProps = {
   onClick: (art: Art) => void;
@@ -26,8 +24,7 @@ export default function ImageElement({ onClick, art }: ImageElementProps) {
         alt="image"
       />
 
-      <div className="flex p-4 bg-secondary/40 rounded-full gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
-        <FaClock className="size-6" />
+      <div className="flex p-4 bg-background/50 rounded-full gap-x-2 items-center h-6 absolute bottom-0 left-0 m-2">
         <p>{convertUnixDateHours(art.dateArt as unknown as number)}</p>
       </div>
     </div>

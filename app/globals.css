@@ -6,10 +6,11 @@ html,
 body,
 #root {
   scroll-behavior: smooth;
-  background-color: #f7f9f6;
+  background-color: #0f010d;
   height: 100vh;
   margin: 0;
   padding: 0;
+  @apply text-text;
 }
 
 ::-webkit-scrollbar {
