@@ -1,12 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { addArtAction } from "./serverAction";
+import { addArtAction, removeArt } from "./serverAction";
 
 export default function Add() {
   const ref = useRef<HTMLFormElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [video, setVideo] = useState<File | null>(null);
+  const [code, setCode] = useState("0");
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <form
@@ -24,10 +25,6 @@ export default function Add() {
             <input
               type="date"
               name="date"
-              onChange={(e) => {
-                console.log(e.target.value);
-                console.log(typeof e.target.value);
-              }}
               className="rounded-lg px-3 py-2 border"
             />
           </div>
@@ -35,6 +32,10 @@ export default function Add() {
             <p>Code</p>
             <input
               type="text"
+              onChange={(e) => {
+                setCode(e.target.value);
+              }}
+              value={code}
               placeholder="code"
               className="rounded-lg px-3 py-2 border"
               name="secretKey"
@@ -89,6 +90,29 @@ export default function Add() {
             Send
           </button>
         </div>
+      </form>
+      <form
+        className="mt-3 border-t"
+        action={async (FormData) => {
+          FormData.append("secretKey", code);
+          const { status } = await removeArt(FormData);
+          alert(`${status}`);
+        }}
+      >
+        <p className="pt-1 mb-2">Delete Art</p>
+        <input
+          type="text"
+          name="id"
+          id="id"
+          placeholder="Art ID"
+          className="rounded-lg px-3 py-2"
+        />
+        <button
+          type="submit"
+          className="bg-secondary px-3 py-2 rounded-lg ml-2"
+        >
+          DELETE
+        </button>
       </form>
     </div>
   );

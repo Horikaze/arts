@@ -11,6 +11,7 @@ type ClickedImageProps = {
   closeModal: () => void;
   imageUrl: string;
   imageName: string;
+  artID: string;
 };
 
 function ClickedImage({
@@ -18,6 +19,7 @@ function ClickedImage({
   closeModal,
   imageUrl,
   imageName,
+  artID,
 }: ClickedImageProps) {
   const ref = useRef(null);
 
@@ -42,8 +44,9 @@ function ClickedImage({
           onClick={closeModal}
           className="self-end absolute z-20 outline-none"
         >
-          <CgCloseO className="w-12 h-12 self-end m-2 text-text hover:scale-110 transition-all" />
+          <CgCloseO className="w-12 h-12 self-end mr-2 text-text hover:scale-110 transition-all" />
         </button>
+        <p className="absolute text-text ml-2 opacity-50 z-30">ID: {artID}</p>
         <div className="flex flex-col w-full h-full">
           <Image
             src={imageUrl}
@@ -55,7 +58,7 @@ function ClickedImage({
           />
         </div>
       </div>
-      <div className="absolute mb-3 flex items-center justify-center h-12 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 text-text font-semibold">
+      <div className="absolute flex items-center justify-center h-12 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 text-text font-semibold">
         <div
           className="flex cursor-pointer transition-all group gap-x-2 items-center justify-center border-r-2 h-full p-2 border rounded-l-full
          hover:bg-text bg-background/60

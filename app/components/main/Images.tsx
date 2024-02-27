@@ -7,9 +7,11 @@ export default function Images({ images }: { images: Art[] }) {
   const [modal, setModal] = useState(false);
   const [currentImageUrl, setCurrentImageUrl] = useState("");
   const [currentImageName, setCurrentImageName] = useState("");
+  const [currentArtID, setCurrentArtID] = useState("");
   const handleImageClick = (art: Art) => {
     setCurrentImageUrl(art.fileUrl);
     setCurrentImageName(art.fileName);
+    setCurrentArtID(art.id);
     setModal(true);
   };
 
@@ -22,6 +24,7 @@ export default function Images({ images }: { images: Art[] }) {
         openModal={modal}
         imageUrl={currentImageUrl}
         imageName={currentImageName}
+        artID={currentArtID}
         closeModal={() => {
           setModal(false);
         }}

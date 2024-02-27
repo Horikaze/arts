@@ -38,3 +38,40 @@ export const addArtAction = async (formData: FormData): Promise<addArtRes> => {
     return { status: "ERROR" };
   }
 };
+
+export const removeArt = async (formData: FormData): Promise<addArtRes> => {
+  try {
+    const artID = formData.get("id") as string;
+    console.log(artID);
+    const secretKey = formData.get("secretKey") as string;
+    if (!artID || artID === "") {
+      return { status: "NO DATA" };
+    }
+    if (!secretKey || secretKey === "") {
+      return { status: "NO DATA" };
+    }
+    const admin = await prisma.adminKey.findFirst();
+    if (secretKey.toString() !== admin?.key.toString()) {
+      return { status: "WRONG KEY" };
+    }
+    const deletedArt = await prisma.art.delete({
+      where: {
+        id: artID,
+      },
+    });
+    const utapi = new UTApi();
+    const deletedVideoId = deletedArt.video?.split("/").at(-1);
+    if (deletedVideoId) {
+      utapi.deleteFiles(deletedVideoId);
+    }
+    const deletedArtId = deletedArt.fileUrl?.split("/").at(-1);
+    if (deletedArtId) {
+      utapi.deleteFiles(deletedArtId);
+    }
+    revalidatePath("/", "layout");
+    return { status: "OK" };
+  } catch (error) {
+    console.log(error);
+    return { status: "ERROR" };
+  }
+};
