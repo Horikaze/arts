@@ -35,7 +35,7 @@ function ClickedImage({
     <dialog
       ref={ref}
       onCancel={closeModal}
-      className="w-full h-full bg-background/50 backdrop:bg-background/50"
+      className="w-full h-full relative bg-background/0 backdrop:bg-background/60"
     >
       <div className="flex flex-col w-full h-full absolute">
         <button
@@ -44,7 +44,7 @@ function ClickedImage({
         >
           <CgCloseO className="w-12 h-12 self-end m-2 text-text hover:scale-110 transition-all" />
         </button>
-        <div className="flex flex-col w-full h-full relative">
+        <div className="flex flex-col w-full h-full">
           <Image
             src={imageUrl}
             alt="image"
@@ -58,7 +58,7 @@ function ClickedImage({
       <div className="absolute mb-3 flex items-center justify-center h-12 rounded-full bottom-0 left-1/2 transform -translate-x-1/2 text-text font-semibold">
         <div
           className="flex cursor-pointer transition-all group gap-x-2 items-center justify-center border-r-2 h-full p-2 border rounded-l-full
-         hover:bg-text
+         hover:bg-text bg-background/60
         "
         >
           <FaVideo className="h-6 w-6 group-hover:text-background" />
@@ -69,7 +69,7 @@ function ClickedImage({
             saveAs(imageUrl, imageName);
           }}
           className="flex cursor-pointer transition-all group gap-x-2 items-center justify-center h-full p-2 border rounded-r-full
-         hover:bg-text
+         hover:bg-text bg-background/60
         "
         >
           <FaDownload className="h-6 w-6 group-hover:text-background" />
